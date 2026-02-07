@@ -51,6 +51,11 @@ const HomeScreen = ({ onSelectService, onUrgent }: HomeScreenProps) => {
         </div>
       </div>
 
+      {/* Greeting */}
+      <div className="mb-4">
+        <h1 className="text-xl font-bold text-foreground">Hello, Rahul!</h1>
+      </div>
+
       {/* Search Bar */}
       <div className="relative mb-6">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -128,10 +133,10 @@ const HomeScreen = ({ onSelectService, onUrgent }: HomeScreenProps) => {
         </div>
       </div>
 
-      {/* Greeting moved below */}
-      <div className="mt-6 text-center">
-        <p className="text-muted-foreground">
-          Hello, <span className="font-semibold text-foreground">Rahul</span>! 🛡️ All workers are verified & trustworthy
+      {/* Trust Badge Card */}
+      <div className="mt-6 rounded-2xl bg-success/10 border border-success/20 p-4">
+        <p className="text-center text-success font-medium">
+          🛡️ All workers are verified & trustworthy
         </p>
       </div>
     </div>
