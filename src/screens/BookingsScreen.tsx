@@ -125,7 +125,7 @@ const BookingsScreen = () => {
   const pastBookings = mockBookings.filter((b) => b.status !== "upcoming");
 
   return (
-    <div className="flex-1 overflow-y-auto pb-24">
+    <div className="flex-1 overflow-y-auto pb-28 w-full">
       <div className="p-4">
         <h1 className="text-xl font-bold text-foreground mb-1">My Bookings</h1>
         <p className="text-sm text-muted-foreground mb-6">Track and manage your services</p>

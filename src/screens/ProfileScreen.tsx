@@ -45,7 +45,7 @@ const ProfileScreen = () => {
   ];
 
   return (
-    <div className="flex-1 overflow-y-auto pb-24">
+    <div className="flex-1 overflow-y-auto pb-28 w-full">
       {/* Profile Header */}
       <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-6 pb-8">
         <div className="flex items-center gap-4">
