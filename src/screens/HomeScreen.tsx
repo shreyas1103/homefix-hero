@@ -1,6 +1,5 @@
-import { MapPin, Bell, Search, AlertTriangle } from "lucide-react";
-import ServiceCard from "../components/ServiceCard";
-import { ElectricianIcon, PlumberIcon, CarpenterIcon, ACRepairIcon } from "../components/icons/ServiceIcons";
+import { MapPin, Search, ChevronDown, AlertTriangle, Star, Clock, Users } from "lucide-react";
+import { ElectricianIcon, PlumberIcon, CarpenterIcon, ACRepairIcon, CleaningIcon } from "../components/icons/ServiceIcons";
 
 interface HomeScreenProps {
   onSelectService: (service: string) => void;
@@ -12,59 +11,44 @@ const HomeScreen = ({ onSelectService, onUrgent }: HomeScreenProps) => {
     {
       id: "electrician",
       title: "Electrician",
-      subtitle: "Wiring, switches, repairs",
-      icon: <ElectricianIcon className="w-7 h-7 text-accent" />,
-      color: "bg-accent-light",
+      icon: <ElectricianIcon className="w-8 h-8 text-primary" />,
     },
     {
       id: "plumber",
       title: "Plumber",
-      subtitle: "Leaks, taps, drainage",
-      icon: <PlumberIcon className="w-7 h-7 text-primary" />,
-      color: "bg-primary-light",
+      icon: <PlumberIcon className="w-8 h-8 text-primary" />,
     },
     {
       id: "carpenter",
       title: "Carpenter",
-      subtitle: "Furniture, doors, cabinets",
-      icon: <CarpenterIcon className="w-7 h-7 text-warning" />,
-      color: "bg-accent-light",
+      icon: <CarpenterIcon className="w-8 h-8 text-primary" />,
     },
     {
       id: "ac-repair",
       title: "AC Repair",
-      subtitle: "Service, gas refill, install",
-      icon: <ACRepairIcon className="w-7 h-7 text-primary" />,
-      color: "bg-primary-light",
+      icon: <ACRepairIcon className="w-8 h-8 text-primary" />,
+    },
+    {
+      id: "cleaning",
+      title: "Cleaning",
+      icon: <CleaningIcon className="w-8 h-8 text-primary" />,
     },
   ];
 
   return (
-    <div className="px-5 pb-28">
-      {/* Header */}
-      <div className="flex items-center justify-between py-4">
+    <div className="px-5 pb-28 bg-background">
+      {/* Location Header */}
+      <div className="py-4">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center">
-            <MapPin className="w-5 h-5 text-primary" />
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground">Your location</p>
-            <p className="font-semibold text-foreground text-sm">Koramangala, Bangalore</p>
+          <MapPin className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-1">
+            <div>
+              <p className="text-xs text-muted-foreground">Your Location</p>
+              <p className="font-semibold text-foreground text-sm">HSR Layout, Bangalore</p>
+            </div>
+            <ChevronDown className="w-4 h-4 text-muted-foreground" />
           </div>
         </div>
-        <button className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center shadow-sm">
-          <Bell className="w-5 h-5 text-foreground" />
-        </button>
-      </div>
-
-      {/* Greeting */}
-      <div className="mt-4 mb-6">
-        <h1 className="text-2xl font-bold text-foreground">
-          Hello, Priya! 👋
-        </h1>
-        <p className="text-muted-foreground mt-1">
-          What service do you need today?
-        </p>
       </div>
 
       {/* Search Bar */}
@@ -72,48 +56,83 @@ const HomeScreen = ({ onSelectService, onUrgent }: HomeScreenProps) => {
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
         <input
           type="text"
-          placeholder="Search for services..."
-          className="w-full py-3.5 pl-12 pr-4 rounded-2xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+          placeholder="What service do you need?"
+          className="w-full py-3.5 pl-12 pr-4 rounded-2xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
         />
       </div>
 
-      {/* Urgent Service Button */}
-      <button
-        onClick={onUrgent}
-        className="urgent-button flex items-center justify-center gap-3 mb-8"
-      >
-        <AlertTriangle className="w-5 h-5" />
-        <span>🚨 Urgent Service Needed</span>
-      </button>
-
       {/* Services Section */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-foreground mb-4">Our Services</h2>
-        <div className="space-y-3">
+        <h2 className="text-lg font-bold text-foreground mb-4">What do you need help with?</h2>
+        <div className="grid grid-cols-3 gap-3">
           {services.map((service) => (
-            <ServiceCard
+            <button
               key={service.id}
-              icon={service.icon}
-              title={service.title}
-              subtitle={service.subtitle}
-              color={service.color}
               onClick={() => onSelectService(service.id)}
-            />
+              className="flex flex-col items-center gap-2 p-4 rounded-2xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all active:scale-95"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center">
+                {service.icon}
+              </div>
+              <span className="text-sm font-medium text-foreground">{service.title}</span>
+            </button>
           ))}
+          
+          {/* Emergency Button */}
+          <button
+            onClick={onUrgent}
+            className="flex flex-col items-center gap-2 p-4 rounded-2xl border-2 border-accent bg-accent-light hover:shadow-md transition-all active:scale-95"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+              <AlertTriangle className="w-8 h-8 text-accent-foreground" />
+            </div>
+            <span className="text-sm font-medium text-accent">Emergency</span>
+          </button>
         </div>
       </div>
 
-      {/* Trust Banner */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-4 text-primary-foreground">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-            <span className="text-2xl">🛡️</span>
-          </div>
-          <div>
-            <h3 className="font-semibold">100% Verified Workers</h3>
-            <p className="text-sm opacity-90">Background checked & trained professionals</p>
-          </div>
+      {/* Promo Banner */}
+      <div className="relative rounded-2xl overflow-hidden mb-6 bg-gradient-to-r from-slate-800 to-slate-700">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600')] bg-cover bg-center opacity-40" />
+        <div className="relative p-5">
+          <h3 className="text-lg font-bold text-white mb-1">First booking? Get ₹200 off</h3>
+          <p className="text-sm text-white/80 mb-3">Use code FIRST200 at checkout</p>
+          <button className="text-primary font-semibold text-sm flex items-center gap-1">
+            Book Now →
+          </button>
         </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="grid grid-cols-3 gap-3 bg-card rounded-2xl p-4 border border-border">
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-1">
+            <Users className="w-4 h-4 text-primary" />
+            <span className="text-xl font-bold text-primary">500+</span>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">Verified Workers</p>
+        </div>
+        <div className="text-center border-x border-border">
+          <div className="flex items-center justify-center gap-1">
+            <Clock className="w-4 h-4 text-primary" />
+            <span className="text-xl font-bold text-foreground">15 min</span>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">Avg. Response</p>
+        </div>
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-1">
+            <span className="text-xl font-bold text-foreground">4.8</span>
+            <Star className="w-4 h-4 text-accent fill-accent" />
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">User Rating</p>
+        </div>
+      </div>
+
+      {/* Greeting moved below */}
+      <div className="mt-6 text-center">
+        <p className="text-muted-foreground">
+          Hello, <span className="font-semibold text-foreground">Rahul</span>! 🛡️ All workers are verified & trustworthy
+        </p>
       </div>
     </div>
   );

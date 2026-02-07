@@ -56,7 +56,7 @@ const SupportScreen = () => {
   ];
 
   return (
-    <div className="flex-1 overflow-y-auto pb-24">
+    <div className="flex-1 overflow-y-auto pb-28 w-full">
       <div className="p-4">
         <h1 className="text-xl font-bold text-foreground mb-1">Help & Support</h1>
         <p className="text-sm text-muted-foreground mb-6">We're here to help you 24/7</p>
